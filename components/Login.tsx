@@ -20,25 +20,25 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         <div className="relative z-10 p-16 max-w-xl text-left">
           <div className="flex items-center gap-3 mb-10">
             <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(0,180,255,0.3)]">
-              <span className="material-symbols-outlined text-black font-black text-3xl">dashboard</span>
+              <span className="material-symbols-outlined text-black font-bold text-3xl">dashboard</span>
             </div>
-            <h1 className="text-3xl font-black text-white tracking-tighter">LifeSync Pro</h1>
+            <h1 className="text-3xl font-bold text-white tracking-tighter">LifeSync Pro</h1>
           </div>
-          <h2 className="text-5xl font-black text-white leading-tight mb-6">
+          <h2 className="text-5xl font-bold text-white leading-tight mb-6">
             Domine sua rotina.<br/>
             <span className="text-primary drop-shadow-[0_0_15px_rgba(0,180,255,0.4)]">Alcance suas metas.</span>
           </h2>
-          <p className="text-lg text-slate-400 font-medium leading-relaxed">
+          <p className="text-lg text-slate-400 font-normal leading-relaxed">
             Gestão integrada de tarefas, saúde, hábitos e família em uma plataforma inteligente e minimalista.
           </p>
           
           <div className="mt-12 flex gap-8">
             <div className="flex flex-col">
-              <span className="text-2xl font-black text-white">100%</span>
+              <span className="text-2xl font-bold text-white">100%</span>
               <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Privacidade</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl font-black text-white">24/7</span>
+              <span className="text-2xl font-bold text-white">24/7</span>
               <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Sincronização</span>
             </div>
           </div>
@@ -52,13 +52,13 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         
         <div className="w-full max-w-md space-y-8 relative z-10">
           <div className="text-center">
-            <h2 className="text-3xl font-black text-white tracking-tight">Bem-vindo de volta</h2>
-            <p className="mt-2 text-slate-400 font-medium tracking-wide">Faça login para continuar sua jornada.</p>
+            <h2 className="text-3xl font-bold text-white tracking-tight">Bem-vindo de volta</h2>
+            <p className="mt-2 text-slate-400 font-normal tracking-wide">Faça login para continuar sua jornada.</p>
           </div>
 
           <div className="space-y-4">
             <div className="space-y-2">
-              <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">E-mail ou Usuário</label>
+              <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">E-mail ou Usuário</label>
               <input 
                 className="w-full bg-surface-dark border border-white/5 text-white rounded-2xl p-4 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-slate-600" 
                 placeholder="exemplo@lifesync.pro" 
@@ -66,8 +66,8 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             </div>
             <div className="space-y-2">
               <div className="flex justify-between items-center ml-1">
-                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Senha</label>
-                <button className="text-[10px] font-black text-primary uppercase tracking-widest hover:underline">Esqueceu?</button>
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Senha</label>
+                <button className="text-[10px] font-bold text-primary uppercase tracking-widest hover:underline">Esqueceu?</button>
               </div>
               <input 
                 type="password" 
@@ -79,25 +79,25 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
           <button 
             onClick={onLogin}
-            className="w-full py-4 bg-primary text-black font-black rounded-2xl shadow-xl shadow-primary/20 hover:bg-blue-400 transform transition-all active:scale-[0.98] text-sm uppercase tracking-widest"
+            className="w-full py-4 bg-primary text-black font-bold rounded-2xl shadow-xl shadow-primary/20 hover:bg-blue-400 transform transition-all active:scale-[0.98] text-sm uppercase tracking-widest"
           >
             Acessar Plataforma
           </button>
 
           <div className="relative flex items-center py-4">
             <div className="flex-grow border-t border-white/5"></div>
-            <span className="mx-4 text-[10px] font-black text-slate-600 uppercase tracking-widest">Ou entrar com</span>
+            <span className="mx-4 text-[10px] font-bold text-slate-600 uppercase tracking-widest">Ou entrar com</span>
             <div className="flex-grow border-t border-white/5"></div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <button className="flex items-center justify-center gap-3 py-3 border border-white/10 rounded-2xl hover:bg-white/5 transition-all group">
               <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFZDxKzyDodK3FTzEMuKXueBaKfIRBKMohYd-Q2M2qIBvQ4ReE0kMaM_W8GoPFqmyGWccpwpsefhUftkhLVIqfWYtKkQx5JblPnT17zuJBg7IwCXQh-kpcwFjyvrQEffXgIrYUZ_jDeqF1aqFAFNVj7VN6hCZl-UU_Wj2ONtBRpFKXHjP-BiuE4CWMuDDdu1kv3Rqt6SHGYYPOpE8H2U6txAc8UiZCkcCQyvAGxFjdwVvyZRR8UCZIUW3pPJcWk5S0pCiDuBP1LWk" className="w-5 grayscale group-hover:grayscale-0 transition-all" alt="Google" />
-              <span className="text-xs font-black text-white uppercase tracking-widest">Google</span>
+              <span className="text-xs font-bold text-white uppercase tracking-widest">Google</span>
             </button>
             <button className="flex items-center justify-center gap-3 py-3 border border-white/10 rounded-2xl hover:bg-white/5 transition-all group">
               <span className="material-symbols-outlined text-white text-[20px] group-hover:scale-110 transition-transform">apple</span>
-              <span className="text-xs font-black text-white uppercase tracking-widest">Apple</span>
+              <span className="text-xs font-bold text-white uppercase tracking-widest">Apple</span>
             </button>
           </div>
           

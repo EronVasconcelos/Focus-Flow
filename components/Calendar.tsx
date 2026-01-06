@@ -63,8 +63,8 @@ const Calendar: React.FC<CalendarProps> = ({ onAddEvent }) => {
       {/* HEADER SECTION */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div className="flex items-center gap-4">
-          <h1 className="text-4xl font-black text-white tracking-tight">Outubro 2023</h1>
-          <span className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-[10px] font-black text-slate-400 uppercase tracking-widest">Semana 42</span>
+          <h1 className="text-4xl font-bold text-white tracking-tight">Outubro 2023</h1>
+          <span className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-[10px] font-bold text-slate-400 uppercase tracking-widest">Semana 42</span>
         </div>
         
         <div className="flex items-center gap-4 w-full md:w-auto">
@@ -73,13 +73,13 @@ const Calendar: React.FC<CalendarProps> = ({ onAddEvent }) => {
               <button 
                 key={v}
                 onClick={() => setView(v as any)}
-                className={`flex-1 md:flex-none px-6 py-2 text-xs font-black uppercase tracking-widest rounded-lg transition-all ${view === v ? 'bg-background-dark text-white border border-white/5 shadow-xl' : 'text-slate-500 hover:text-slate-300'}`}
+                className={`flex-1 md:flex-none px-6 py-2 text-xs font-bold uppercase tracking-widest rounded-lg transition-all ${view === v ? 'bg-background-dark text-white border border-white/5 shadow-xl' : 'text-slate-500 hover:text-slate-300'}`}
               >
                 {v}
               </button>
             ))}
           </div>
-          <button className="flex items-center gap-2 px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-xs font-black text-white uppercase tracking-widest hover:bg-white/10 transition-all whitespace-nowrap">
+          <button className="flex items-center gap-2 px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-xs font-bold text-white uppercase tracking-widest hover:bg-white/10 transition-all whitespace-nowrap">
             <span className="material-symbols-outlined text-sm">person_add</span>
             Convidar Membro
           </button>
@@ -95,7 +95,7 @@ const Calendar: React.FC<CalendarProps> = ({ onAddEvent }) => {
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all whitespace-nowrap ${activeFilter === f.id ? 'bg-white/10 border-white/20 text-white' : 'bg-transparent border-white/5 text-slate-500 hover:border-white/10'}`}
           >
             <span className={`material-symbols-outlined text-[18px] ${f.id !== 'Todos' ? f.color : ''} ${f.id !== 'Todos' ? 'icon-fill' : ''}`}>{f.icon}</span>
-            <span className="text-xs font-black uppercase tracking-widest">{f.id}</span>
+            <span className="text-xs font-bold uppercase tracking-widest">{f.id}</span>
           </button>
         ))}
       </div>
@@ -104,7 +104,7 @@ const Calendar: React.FC<CalendarProps> = ({ onAddEvent }) => {
       <div className="flex-1 bg-surface-dark/20 border border-white/5 rounded-[2.5rem] overflow-hidden flex flex-col min-h-0">
         <div className="grid grid-cols-7 border-b border-white/5 bg-background-dark/30">
           {['SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB', 'DOM'].map((d, i) => (
-            <div key={d} className={`py-4 text-center text-[10px] font-black tracking-[0.2em] ${i >= 5 ? 'text-green-500' : 'text-slate-500'}`}>
+            <div key={d} className={`py-4 text-center text-[10px] font-bold tracking-[0.2em] ${i >= 5 ? 'text-green-500' : 'text-slate-500'}`}>
               {d}
             </div>
           ))}
@@ -119,7 +119,7 @@ const Calendar: React.FC<CalendarProps> = ({ onAddEvent }) => {
               return (
                 <div key={i} className={`min-h-[140px] p-3 space-y-2 group hover:bg-white/[0.02] transition-colors relative cursor-pointer ${!isCurrentMonth ? 'opacity-20' : ''}`}>
                    <div className="flex justify-between items-start">
-                      <span className={`text-sm font-black transition-colors ${isToday ? 'w-7 h-7 bg-primary text-black flex items-center justify-center rounded-full' : 'text-slate-600 group-hover:text-slate-400'}`}>
+                      <span className={`text-sm font-bold transition-colors ${isToday ? 'w-7 h-7 bg-primary text-black flex items-center justify-center rounded-full' : 'text-slate-600 group-hover:text-slate-400'}`}>
                         {isCurrentMonth ? d : (d <= 0 ? 30 + d : d - 31)}
                       </span>
                       {isToday && <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse mt-1.5"></div>}
@@ -133,9 +133,9 @@ const Calendar: React.FC<CalendarProps> = ({ onAddEvent }) => {
                           className={`p-2 rounded-lg border ${e.color} ${e.border} hover:scale-[1.02] active:scale-95 transition-all relative overflow-hidden group/event`}
                         >
                            <div className="flex items-center justify-between gap-1 mb-1">
-                              <p className="text-[10px] font-black text-white truncate leading-none">{e.title}</p>
+                              <p className="text-[10px] font-bold text-white truncate leading-none">{e.title}</p>
                               {e.indicator && (
-                                <div className="w-4 h-4 rounded bg-white/10 flex items-center justify-center text-[8px] font-black text-white shrink-0">
+                                <div className="w-4 h-4 rounded bg-white/10 flex items-center justify-center text-[8px] font-bold text-white shrink-0">
                                    {e.indicator}
                                 </div>
                               )}

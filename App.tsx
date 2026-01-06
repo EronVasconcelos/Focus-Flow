@@ -176,7 +176,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen bg-background-light dark:bg-background-dark overflow-hidden font-display text-slate-900 dark:text-white">
+    <div className="flex h-screen bg-background-light dark:bg-background-dark overflow-hidden font-sans text-slate-900 dark:text-white">
       <Sidebar activePage={activePage} setActivePage={setActivePage} onLogout={() => setIsLoggedIn(false)} isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
       
       <main className="flex-1 flex flex-col min-w-0 relative pb-16 lg:pb-0">
@@ -185,7 +185,7 @@ const App: React.FC = () => {
               <button onClick={() => setIsMobileMenuOpen(true)} className="lg:hidden p-2 rounded-lg bg-slate-100 dark:bg-white/5 text-slate-500 hover:text-primary transition-colors">
                 <span className="material-symbols-outlined">menu</span>
               </button>
-              <h2 className="hidden md:block text-sm font-black uppercase tracking-widest text-primary drop-shadow-[0_0_8px_rgba(0,180,255,0.4)]">LifeSync Pro 2026</h2>
+              <h2 className="hidden md:block text-sm font-bold uppercase tracking-widest text-primary drop-shadow-[0_0_8px_rgba(0,180,255,0.4)]">LifeSync Pro 2026</h2>
            </div>
            
            <div className="flex items-center gap-4">
@@ -246,7 +246,7 @@ const App: React.FC = () => {
                   <div className={`w-12 h-12 ${item.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
                     <span className="material-symbols-outlined text-white">{item.icon}</span>
                   </div>
-                  <span className="text-sm font-black uppercase tracking-widest">{item.label}</span>
+                  <span className="text-sm font-bold uppercase tracking-widest">{item.label}</span>
                 </button>
               ))}
             </div>
@@ -262,22 +262,22 @@ const App: React.FC = () => {
           {modalType === 'task' && (
             <form onSubmit={(e) => handleAddTask(e)} className="space-y-6">
               <div className="space-y-1">
-                <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest">O que planeja? (Ex: #reuniao amanha 10h p1)</label>
+                <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest">O que planeja? (Ex: #reuniao amanha 10h p1)</label>
                 <input required value={taskTitle} onChange={handleTaskTitleChange} className="w-full bg-[#0a1420] border-none rounded-xl p-4 text-sm focus:ring-1 focus:ring-primary/50 text-white" placeholder="Sua intenção aqui..." />
                 
                 <div className="flex flex-wrap gap-2 mt-2">
-                   <div className="bg-primary/10 px-2 py-1 rounded text-[10px] font-black text-primary border border-primary/20">📅 {taskDate}</div>
-                   {taskTime && <div className="bg-blue-500/10 px-2 py-1 rounded text-[10px] font-black text-blue-400 border border-blue-500/20">⏰ {taskTime}</div>}
-                   <div className="bg-orange-500/10 px-2 py-1 rounded text-[10px] font-black text-orange-400 border border-orange-500/20 uppercase">🚩 {taskPriority}</div>
+                   <div className="bg-primary/10 px-2 py-1 rounded text-[10px] font-bold text-primary border border-primary/20">📅 {taskDate}</div>
+                   {taskTime && <div className="bg-blue-500/10 px-2 py-1 rounded text-[10px] font-bold text-blue-400 border border-blue-500/20">⏰ {taskTime}</div>}
+                   <div className="bg-orange-500/10 px-2 py-1 rounded text-[10px] font-bold text-orange-400 border border-orange-500/20 uppercase">🚩 {taskPriority}</div>
                    {taskTags.map(tag => (
-                     <div key={tag} className="bg-purple-500/10 px-2 py-1 rounded text-[10px] font-black text-purple-400 border border-purple-500/20"># {tag}</div>
+                     <div key={tag} className="bg-purple-500/10 px-2 py-1 rounded text-[10px] font-bold text-purple-400 border border-purple-500/20"># {tag}</div>
                    ))}
                 </div>
               </div>
               
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest">Ambiente</label>
+                  <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest">Ambiente</label>
                   <select name="category" value={prefilledCategory || 'Trabalho'} onChange={(e) => setPrefilledCategory(e.target.value as any)} className="w-full bg-[#0a1420] border-none rounded-xl p-4 text-sm focus:ring-1 focus:ring-primary/50 text-white">
                     <option value="Trabalho">Trabalho</option>
                     <option value="Saúde">Saúde</option>
@@ -287,7 +287,7 @@ const App: React.FC = () => {
                   </select>
                 </div>
                 <div className="space-y-1">
-                  <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest">Prioridade Manual</label>
+                  <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest">Prioridade Manual</label>
                   <select name="priority" value={taskPriority} onChange={(e) => setTaskPriority(e.target.value as any)} className="w-full bg-[#0a1420] border-none rounded-xl p-4 text-sm focus:ring-1 focus:ring-primary/50 text-white">
                     <option value="low">P4 - Baixa</option>
                     <option value="medium">P3 - Média</option>
@@ -297,27 +297,27 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              <button type="submit" className="w-full py-5 bg-primary text-black font-black rounded-2xl shadow-xl hover:shadow-primary/30 transition-all text-lg">Sincronizar Tarefa</button>
+              <button type="submit" className="w-full py-5 bg-primary text-black font-bold rounded-2xl shadow-xl hover:shadow-primary/30 transition-all text-lg">Sincronizar Tarefa</button>
             </form>
           )}
 
           {modalType === 'quick-note' && (
              <form onSubmit={(e) => handleAddTask(e, true)} className="space-y-4">
                <div>
-                  <label className="block text-[10px] font-black text-slate-500 uppercase mb-2 tracking-widest">Apenas descarregue seu cérebro:</label>
+                  <label className="block text-[10px] font-bold text-slate-500 uppercase mb-2 tracking-widest">Apenas descarregue seu cérebro:</label>
                   <input autoFocus value={taskTitle} onChange={handleTaskTitleChange} className="w-full bg-[#0a1420] border-none rounded-2xl p-5 text-lg font-bold text-white focus:ring-1 focus:ring-primary/50" placeholder="O que está pensando?" />
                   <p className="text-[10px] text-slate-500 mt-2 italic">A IA organizará esta nota na sua Caixa de Entrada para revisão posterior.</p>
                </div>
-               <button type="submit" className="w-full py-4 bg-white/5 hover:bg-white/10 text-white font-black rounded-xl border border-white/10 transition-all">Salvar na Inbox</button>
+               <button type="submit" className="w-full py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-xl border border-white/10 transition-all">Salvar na Inbox</button>
              </form>
           )}
 
           {modalType === 'coming-soon' && (
             <div className="text-center py-10 space-y-4">
               <span className="material-symbols-outlined text-5xl text-primary mb-2">construction</span>
-              <h4 className="text-xl font-black">Módulo em Refinamento</h4>
+              <h4 className="text-xl font-bold">Módulo em Refinamento</h4>
               <p className="text-sm text-slate-500">O LifeSync está otimizando esta função para seu perfil.</p>
-              <button onClick={() => setModalType(null)} className="px-8 py-3 bg-primary text-black font-black rounded-xl">Fechar</button>
+              <button onClick={() => setModalType(null)} className="px-8 py-3 bg-primary text-black font-bold rounded-xl">Fechar</button>
             </div>
           )}
         </Modal>
@@ -328,9 +328,9 @@ const App: React.FC = () => {
             <div className={`px-6 py-4 rounded-3xl shadow-2xl flex items-center justify-between gap-8 backdrop-blur-xl border border-white/10 ${notification.type === 'success' ? 'bg-primary/20 border-primary/30 text-primary' : 'bg-blue-500/20 border-blue-500/30 text-blue-400'}`}>
               <div className="flex items-center gap-3">
                 <span className="material-symbols-outlined text-2xl">{notification.type === 'success' ? 'check_circle' : 'info'}</span>
-                <span className="text-sm font-black uppercase tracking-wider">{notification.message}</span>
+                <span className="text-sm font-bold uppercase tracking-wider">{notification.message}</span>
               </div>
-              {notification.onUndo && <button onClick={handleUndo} className="px-4 py-2 bg-black/40 hover:bg-black/60 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all border border-white/5 active:scale-90">Desfazer</button>}
+              {notification.onUndo && <button onClick={handleUndo} className="px-4 py-2 bg-black/40 hover:bg-black/60 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all border border-white/5 active:scale-90">Desfazer</button>}
             </div>
           </div>
         )}

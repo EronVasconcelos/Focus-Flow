@@ -12,17 +12,17 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage, onLogout, isOpen, onClose }) => {
-  const navItems: { id: Page; icon: string; label: string; category?: string }[] = [
-    { id: 'dashboard', icon: 'dashboard', label: 'Dashboard' },
-    { id: 'tasks', icon: 'task_alt', label: 'Minhas Tarefas' },
-    { id: 'habits', icon: 'check_circle', label: 'Meus Hábitos' },
-    { id: 'health', icon: 'monitor_heart', label: 'Painel de Saúde' },
-    { id: 'calendar', icon: 'calendar_month', label: 'Calendário Familiar' },
-    { id: 'resources', icon: 'inventory_2', label: 'Biblioteca' },
-    { id: 'goals', icon: 'flag', label: 'Metas' },
-    { id: 'analytics', icon: 'analytics', label: 'Análise' },
-    { id: 'workspace-config', icon: 'tune', label: 'Configurações' },
-    { id: 'settings', icon: 'person', label: 'Perfil' },
+  const navItems: { id: Page; icon: string; label: string; colorClass: string }[] = [
+    { id: 'dashboard', icon: 'grid_view', label: 'Dashboard', colorClass: 'text-primary' },
+    { id: 'tasks', icon: 'check_circle', label: 'Minhas Tarefas', colorClass: 'text-work' },
+    { id: 'habits', icon: 'published_with_changes', label: 'Meus Hábitos', colorClass: 'text-personal' },
+    { id: 'health', icon: 'monitor_heart', label: 'Painel de Saúde', colorClass: 'text-health' },
+    { id: 'calendar', icon: 'calendar_month', label: 'Calendário Familiar', colorClass: 'text-family' },
+    { id: 'resources', icon: 'inventory_2', label: 'Biblioteca', colorClass: 'text-cyan-400' },
+    { id: 'goals', icon: 'flag', label: 'Metas', colorClass: 'text-orange-400' },
+    { id: 'analytics', icon: 'analytics', label: 'Análise', colorClass: 'text-primary' },
+    { id: 'workspace-config', icon: 'tune', label: 'Configurações', colorClass: 'text-slate-400' },
+    { id: 'settings', icon: 'person', label: 'Perfil', colorClass: 'text-slate-400' },
   ];
 
   return (
@@ -45,7 +45,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage, onLogout, 
               />
               <div className="flex flex-col overflow-hidden">
                 <h1 className="text-sm font-bold truncate">Alex Design</h1>
-                <p className="text-[#9daec2] text-xs font-medium truncate">Membro Pro</p>
+                <p className="text-[#9daec2] text-xs font-normal truncate">Membro Pro</p>
               </div>
             </div>
             <button onClick={onClose} className="lg:hidden text-slate-500 hover:text-white">
@@ -63,14 +63,16 @@ const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage, onLogout, 
                 }}
                 className={`flex items-center w-full gap-3 px-3 py-2.5 rounded-lg transition-all group ${
                   activePage === item.id 
-                    ? 'bg-primary/10 text-primary' 
-                    : 'text-slate-500 dark:text-[#9daec2] hover:bg-slate-100 dark:hover:bg-white/5'
+                    ? 'bg-primary/10' 
+                    : 'hover:bg-slate-100 dark:hover:bg-white/5'
                 }`}
               >
-                <span className={`material-symbols-outlined text-[24px] ${activePage === item.id ? 'icon-fill' : ''}`}>
+                <span className={`material-symbols-outlined text-[24px] ${item.colorClass} ${activePage === item.id ? 'icon-fill' : ''}`}>
                   {item.icon}
                 </span>
-                <span className="text-sm font-semibold">{item.label}</span>
+                <span className={`text-sm font-bold ${activePage === item.id ? 'text-primary' : 'text-slate-500 dark:text-[#9daec2]'}`}>
+                  {item.label}
+                </span>
               </button>
             ))}
           </nav>

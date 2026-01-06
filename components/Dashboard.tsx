@@ -20,16 +20,23 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks, habits, onNewTask }) => {
     Família: tasks.filter(t => t.category === 'Família').length,
   };
 
+  const statConfig = [
+    { label: 'Total de Tarefas', value: tasks.length.toString(), icon: 'assignment', color: 'text-work', bgColor: 'bg-work/10', change: '+12%' },
+    { label: 'Concluídas', value: completedCount.toString(), icon: 'check_circle', color: 'text-health', bgColor: 'bg-health/10', change: '+5%' },
+    { label: 'Pendentes', value: (tasks.length - completedCount).toString(), icon: 'pending', color: 'text-orange-400', bgColor: 'bg-orange-400/10', change: '-2%' },
+    { label: 'Eficiência', value: `${progressPercent}%`, icon: 'trending_up', color: 'text-personal', bgColor: 'bg-personal/10', change: '+3%' },
+  ];
+
   return (
     <div className="flex-1 p-6 lg:p-10 max-w-[1400px] mx-auto w-full space-y-8 overflow-y-auto">
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl lg:text-4xl font-black text-slate-900 dark:text-white">Bom dia, Alex</h1>
-          <p className="text-slate-500 dark:text-[#9daec2] mt-1 text-lg">Você completou <span className="text-primary font-bold">{progressPercent}%</span> das tarefas de hoje.</p>
+          <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white">Bom dia, Alex</h1>
+          <p className="text-slate-500 dark:text-[#9daec2] mt-1 text-lg font-normal">Você completou <span className="text-primary font-bold">{progressPercent}%</span> das tarefas de hoje.</p>
         </div>
         <button 
           onClick={onNewTask}
-          className="bg-primary hover:bg-blue-400 text-black font-black px-6 py-3 rounded-xl flex items-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95 hidden sm:flex"
+          className="bg-primary hover:bg-blue-400 text-black font-bold px-6 py-3 rounded-xl flex items-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95 hidden sm:flex"
         >
           <span className="material-symbols-outlined">add</span>
           Nova Tarefa
@@ -37,21 +44,16 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks, habits, onNewTask }) => {
       </header>
 
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-        {[
-          { label: 'Total de Tarefas', value: tasks.length.toString(), icon: 'assignment', color: 'blue', change: '+12%' },
-          { label: 'Concluídas', value: completedCount.toString(), icon: 'check_circle', color: 'green', change: '+5%' },
-          { label: 'Pendentes', value: (tasks.length - completedCount).toString(), icon: 'pending', color: 'orange', change: '-2%' },
-          { label: 'Eficiência', value: `${progressPercent}%`, icon: 'trending_up', color: 'purple', change: '+3%' },
-        ].map((stat) => (
+        {statConfig.map((stat) => (
           <div key={stat.label} className="bg-white dark:bg-surface-dark p-5 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm hover:border-primary/20 transition-all group">
             <div className="flex justify-between items-start mb-3">
-              <div className={`p-2 rounded-lg bg-${stat.color}-500/10 text-${stat.color}-500 group-hover:scale-110 transition-transform`}>
+              <div className={`p-2 rounded-lg ${stat.bgColor} ${stat.color} group-hover:scale-110 transition-transform`}>
                 <span className="material-symbols-outlined">{stat.icon}</span>
               </div>
               <span className={`text-[10px] font-bold px-2 py-0.5 rounded bg-primary/10 text-primary`}>{stat.change}</span>
             </div>
             <p className="text-slate-500 dark:text-[#9daec2] text-xs font-bold uppercase tracking-wider">{stat.label}</p>
-            <p className="text-2xl font-black dark:text-white">{stat.value}</p>
+            <p className="text-2xl font-bold dark:text-white mt-1">{stat.value}</p>
           </div>
         ))}
       </section>
@@ -61,7 +63,7 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks, habits, onNewTask }) => {
            <div className="flex justify-between items-center mb-6">
             <h3 className="text-lg font-bold dark:text-white">Produtividade Semanal</h3>
             <div className="flex gap-2">
-              <span className="text-[10px] font-black text-slate-500 uppercase flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-primary"></div> Ativo</span>
+              <span className="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-primary"></div> Ativo</span>
             </div>
           </div>
           <div className="h-48 w-full relative">
@@ -72,8 +74,8 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks, habits, onNewTask }) => {
           <div className="grid grid-cols-5 gap-2 mt-4 border-t border-slate-100 dark:border-white/5 pt-4">
             {Object.entries(categoryStats).map(([cat, val]) => (
               <div key={cat} className="text-center">
-                <p className="text-[10px] font-black text-slate-400 uppercase truncate">{cat}</p>
-                <p className="text-sm font-black dark:text-white">{val}</p>
+                <p className="text-[10px] font-bold text-slate-400 uppercase truncate">{cat}</p>
+                <p className="text-sm font-bold dark:text-white">{val}</p>
               </div>
             ))}
           </div>
@@ -82,22 +84,22 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks, habits, onNewTask }) => {
         <div className="bg-white dark:bg-surface-dark p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm flex flex-col">
           <h3 className="text-lg font-bold dark:text-white mb-4">Foco em Hábitos</h3>
           <div className="space-y-4 flex-1">
-            {habits.slice(0, 3).map((habit) => (
+            {habits.slice(0, 3).map((habit, idx) => (
               <div key={habit.id} className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-white/5 hover:bg-white/10 transition-colors group cursor-pointer">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-black transition-all">
-                  <span className="material-symbols-outlined text-sm">check</span>
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all ${idx % 2 === 0 ? 'bg-health/10 text-health' : 'bg-personal/10 text-personal'} group-hover:bg-primary group-hover:text-black`}>
+                  <span className="material-symbols-outlined text-sm">{idx % 2 === 0 ? 'monitor_heart' : 'published_with_changes'}</span>
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-bold truncate dark:text-white">{habit.title}</p>
-                  <p className="text-[10px] text-slate-500">{habit.streak} dias seguidos</p>
+                  <p className="text-[10px] font-normal text-slate-500">{habit.streak} dias seguidos</p>
                 </div>
                 <div className="w-6 h-6 rounded border-2 border-slate-300 dark:border-white/20 hover:border-primary transition-colors flex items-center justify-center">
-                   {habit.completedDays[0] && <span className="material-symbols-outlined text-primary text-xs font-black">done</span>}
+                   {habit.completedDays[0] && <span className="material-symbols-outlined text-primary text-xs font-bold">done</span>}
                 </div>
               </div>
             ))}
           </div>
-          <button className="w-full mt-4 py-2 text-xs font-black text-slate-500 uppercase hover:text-primary transition-colors">Ver todos os hábitos</button>
+          <button className="w-full mt-4 py-2 text-xs font-bold text-slate-500 uppercase hover:text-primary transition-colors">Ver todos os hábitos</button>
         </div>
       </div>
     </div>

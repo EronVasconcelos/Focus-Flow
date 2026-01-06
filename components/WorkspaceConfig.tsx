@@ -22,18 +22,18 @@ const WorkspaceConfig: React.FC = () => {
   return (
     <div className="flex-1 p-6 lg:p-10 max-w-[1200px] mx-auto w-full space-y-10 overflow-y-auto">
       <header>
-        <h1 className="text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight">Personalização do Workspace</h1>
+        <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">Personalização do Workspace</h1>
         <p className="text-slate-500 dark:text-[#9db9a1]">Configure como a IA organiza seu cérebro e seus ambientes.</p>
       </header>
 
       {/* SECTION: WORKSPACES */}
       <section className="space-y-4">
         <div className="flex justify-between items-center">
-          <h3 className="text-xl font-black dark:text-white flex items-center gap-2">
+          <h3 className="text-xl font-bold dark:text-white flex items-center gap-2">
             <span className="material-symbols-outlined text-primary">category</span>
             Ambientes (Workspaces)
           </h3>
-          <button className="text-xs font-black text-primary uppercase tracking-widest hover:underline">+ Novo Ambiente</button>
+          <button className="text-xs font-bold text-primary uppercase tracking-widest hover:underline">+ Novo Ambiente</button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {workspaces.map((ws) => (
@@ -44,7 +44,7 @@ const WorkspaceConfig: React.FC = () => {
                 </div>
                 <div>
                   <p className="font-bold dark:text-white">{ws.name}</p>
-                  <p className="text-[10px] text-slate-500 uppercase font-black">Ativo</p>
+                  <p className="text-[10px] text-slate-500 uppercase font-bold">Ativo</p>
                 </div>
               </div>
               <button className="text-slate-500 hover:text-white transition-colors">
@@ -57,7 +57,7 @@ const WorkspaceConfig: React.FC = () => {
 
       {/* SECTION: PRIORITIES */}
       <section className="space-y-4">
-        <h3 className="text-xl font-black dark:text-white flex items-center gap-2">
+        <h3 className="text-xl font-bold dark:text-white flex items-center gap-2">
           <span className="material-symbols-outlined text-primary">low_priority</span>
           Configuração de Prioridades
         </h3>
@@ -66,11 +66,11 @@ const WorkspaceConfig: React.FC = () => {
             <div key={p.id} className="bg-white dark:bg-surface-dark p-6 rounded-3xl border border-white/5 space-y-3">
               <div className="flex justify-between items-center">
                 <div className={`w-3 h-3 rounded-full ${p.color} shadow-[0_0_8px_rgba(0,180,255,0.4)]`}></div>
-                <span className="text-[10px] font-black text-slate-500 uppercase">Gatilho: {p.code}</span>
+                <span className="text-[10px] font-bold text-slate-500 uppercase">Gatilho: {p.code}</span>
               </div>
               <p className="font-bold dark:text-white">{p.name}</p>
               <div className="flex gap-2 pt-2">
-                <button className="text-[10px] font-black text-primary uppercase hover:underline">Editar</button>
+                <button className="text-[10px] font-bold text-primary uppercase hover:underline">Editar</button>
               </div>
             </div>
           ))}
@@ -80,11 +80,11 @@ const WorkspaceConfig: React.FC = () => {
       {/* SECTION: TAGS */}
       <section className="space-y-4">
         <div className="flex justify-between items-center">
-          <h3 className="text-xl font-black dark:text-white flex items-center gap-2">
+          <h3 className="text-xl font-bold dark:text-white flex items-center gap-2">
             <span className="material-symbols-outlined text-primary">tag</span>
             Gestão de Etiquetas (#)
           </h3>
-          <button className="text-xs font-black text-primary uppercase tracking-widest hover:underline">+ Gerenciar</button>
+          <button className="text-xs font-bold text-primary uppercase tracking-widest hover:underline">+ Gerenciar</button>
         </div>
         <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-white/5 shadow-sm">
           <p className="text-sm text-slate-500 mb-6">Etiquetas detectadas automaticamente pela IA. Clique para renomear ou arquivar.</p>
@@ -103,7 +103,7 @@ const WorkspaceConfig: React.FC = () => {
       </section>
 
       <div className="pt-10 flex justify-end pb-20">
-        <button className="bg-primary text-black font-black px-10 py-4 rounded-2xl shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
+        <button className="bg-primary text-black font-bold px-10 py-4 rounded-2xl shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
           Sincronizar Estrutura
         </button>
       </div>

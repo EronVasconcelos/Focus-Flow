@@ -12,12 +12,12 @@ const Resources: React.FC<ResourcesProps> = ({ resources, onAdd }) => {
     <div className="flex-1 p-6 lg:p-10 max-w-[1400px] mx-auto w-full space-y-8 overflow-y-auto">
       <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight">Minha Biblioteca</h1>
+          <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">Minha Biblioteca</h1>
           <p className="text-slate-500 dark:text-[#9db9a1]">Documentos, notas e recursos importantes.</p>
         </div>
         <div className="flex gap-2">
           <button className="bg-white/5 hover:bg-white/10 p-3 rounded-xl border border-white/10 transition-all text-slate-400 hover:text-primary"><span className="material-symbols-outlined">search</span></button>
-          <button onClick={onAdd} className="bg-primary text-black font-black px-6 py-3 rounded-xl flex items-center gap-2 shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
+          <button onClick={onAdd} className="bg-primary text-black font-bold px-6 py-3 rounded-xl flex items-center gap-2 shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
             <span className="material-symbols-outlined">upload</span>
             Adicionar
           </button>
@@ -38,14 +38,14 @@ const Resources: React.FC<ResourcesProps> = ({ resources, onAdd }) => {
               <span className="material-symbols-outlined">{cat.icon}</span>
             </div>
             <p className="text-sm font-bold dark:text-white group-hover:text-primary transition-colors">{cat.label}</p>
-            <p className="text-[10px] text-slate-500 font-black uppercase">{cat.count} Itens</p>
+            <p className="text-[10px] text-slate-500 font-bold uppercase">{cat.count} Itens</p>
           </div>
         ))}
       </div>
 
       <div className="bg-white dark:bg-surface-dark rounded-3xl border border-white/5 overflow-hidden shadow-2xl">
         <div className="p-6 border-b border-white/5 flex items-center gap-4 bg-slate-50/50 dark:bg-white/5">
-          <span className="text-xs font-black uppercase text-slate-500 tracking-widest">Recentes</span>
+          <span className="text-xs font-bold uppercase text-slate-500 tracking-widest">Recentes</span>
           <div className="h-px bg-white/5 flex-1"></div>
         </div>
         <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -58,9 +58,9 @@ const Resources: React.FC<ResourcesProps> = ({ resources, onAdd }) => {
                </div>
                <div className="flex-1 min-w-0">
                   <h4 className="font-bold text-sm truncate dark:text-white group-hover:text-primary transition-colors">{res.title}</h4>
-                  <p className="text-xs text-slate-500 line-clamp-1 mb-2 font-medium">{res.description}</p>
+                  <p className="text-xs text-slate-500 line-clamp-1 mb-2 font-normal">{res.description}</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-black text-primary uppercase tracking-widest">{res.category}</span>
+                    <span className="text-[10px] font-bold text-primary uppercase tracking-widest">{res.category}</span>
                     <span className="text-[10px] text-slate-500 font-bold">{res.date}</span>
                   </div>
                </div>
