@@ -1,0 +1,8 @@
+{
+  "name": "LifeSync Pro",
+  "description": "Uma plataforma de produtividade 360º que integra gestão de tarefas, hábitos, saúde, finanças e metas de longo prazo com inteligência artificial.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
