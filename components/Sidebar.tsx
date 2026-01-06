@@ -27,65 +27,39 @@ const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage, onLogout, 
 
   return (
     <>
-      {/* Overlay for mobile */}
       {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] lg:hidden"
-          onClick={onClose}
-        />
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] lg:hidden" onClick={onClose} />
       )}
-      
-      <aside className={`fixed lg:static inset-y-0 left-0 w-64 bg-white dark:bg-[#080c14] border-r border-slate-200 dark:border-white/5 flex flex-col shrink-0 z-[70] transition-transform duration-300 transform ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
-        <div className="p-6">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-3">
-              <div 
-                className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-cover border-2 border-primary/30"
-                style={{ backgroundImage: `url(${IMAGES.ALEX_AVATAR})` }}
-              />
-              <div className="flex flex-col overflow-hidden">
-                <h1 className="text-sm font-bold truncate">Alex Design</h1>
-                <p className="text-[#9daec2] text-xs font-normal truncate">Membro Pro</p>
-              </div>
+      <aside className={`fixed lg:static inset-y-0 left-0 w-64 bg-surface-darker border-r border-white/5 flex flex-col shrink-0 z-[70] transition-transform duration-300 transform ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
+        <div className="p-6 flex flex-col h-full">
+          <div className="flex items-center gap-3 mb-10">
+            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
+              <span className="material-symbols-outlined text-black font-bold">sync_alt</span>
             </div>
-            <button onClick={onClose} className="lg:hidden text-slate-500 hover:text-white">
-              <span className="material-symbols-outlined">close</span>
-            </button>
+            <h1 className="text-xl font-bold tracking-tighter">LifeSync Pro</h1>
           </div>
 
-          <nav className="space-y-1">
+          <nav className="space-y-1 flex-1">
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => {
-                  setActivePage(item.id);
-                  onClose();
-                }}
-                className={`flex items-center w-full gap-3 px-3 py-2.5 rounded-lg transition-all group ${
-                  activePage === item.id 
-                    ? 'bg-primary/10' 
-                    : 'hover:bg-slate-100 dark:hover:bg-white/5'
-                }`}
+                onClick={() => { setActivePage(item.id); onClose(); }}
+                className={`flex items-center w-full gap-3 px-4 py-2.5 rounded-xl transition-all ${activePage === item.id ? 'bg-white/5 text-primary' : 'text-slate-400 hover:bg-white/5 hover:text-white'}`}
               >
-                <span className={`material-symbols-outlined text-[24px] ${item.colorClass} ${activePage === item.id ? 'icon-fill' : ''}`}>
+                <span className={`material-symbols-outlined text-[22px] ${item.colorClass} ${activePage === item.id ? 'icon-fill' : ''}`}>
                   {item.icon}
                 </span>
-                <span className={`text-sm font-bold ${activePage === item.id ? 'text-primary' : 'text-slate-500 dark:text-[#9daec2]'}`}>
-                  {item.label}
-                </span>
+                <span className="text-sm font-bold">{item.label}</span>
               </button>
             ))}
           </nav>
-        </div>
 
-        <div className="mt-auto p-4 border-t border-slate-200 dark:border-white/5">
-          <button 
-            onClick={onLogout}
-            className="flex items-center justify-center w-full gap-2 bg-slate-100 dark:bg-[#111d2e] hover:bg-red-500/10 hover:text-red-500 text-slate-500 dark:text-[#9daec2] py-2.5 rounded-lg transition-all"
-          >
-            <span className="material-symbols-outlined text-[20px]">logout</span>
-            <span className="text-sm font-bold">Sair</span>
-          </button>
+          <div className="pt-6 border-t border-white/5">
+            <button onClick={onLogout} className="flex items-center w-full gap-3 px-4 py-3 text-red-500/60 hover:text-red-500 transition-all font-bold uppercase tracking-widest text-[10px]">
+              <span className="material-symbols-outlined text-[20px]">logout</span>
+              Sair da Conta
+            </button>
+          </div>
         </div>
       </aside>
     </>

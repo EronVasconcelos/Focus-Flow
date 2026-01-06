@@ -20,190 +20,86 @@ const Habits: React.FC<HabitsProps> = ({ habits, setHabits, onNewHabit }) => {
     }));
   };
 
-  const weeklyReminders = [
-    { title: 'Revisão Diária', time: '17:00', countdown: 'Em 30 min', icon: 'history_edu', color: 'orange' },
-    { title: 'Jantar em Família', time: '19:30', countdown: 'Hoje', icon: 'groups', color: 'pink' },
-  ];
-
   return (
-    <div className="flex-1 p-6 lg:p-10 max-w-[1600px] mx-auto w-full space-y-8 overflow-y-auto pb-32">
-      {/* HEADER */}
-      <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+    <div className="flex-1 p-6 lg:p-10 max-w-[1600px] mx-auto w-full space-y-10 overflow-y-auto pb-32">
+      <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div className="space-y-1">
-          <span className="bg-primary/10 text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest border border-primary/20">Terça-feira</span>
-          <h1 className="text-4xl font-bold text-white tracking-tight">Gerenciamento de Hábitos</h1>
-          <p className="text-slate-400 font-normal">Construa consistência e acompanhe seu <span className="text-primary">progresso diário</span>.</p>
+          <h1 className="text-3xl font-bold text-white tracking-tight">Gerenciamento de Hábitos</h1>
+          <p className="text-sm font-normal text-slate-400">Construa consistência e acompanhe seu <span className="text-primary font-bold">progresso diário</span>.</p>
         </div>
-        <div className="flex items-center gap-3 w-full md:w-auto">
-          <button className="flex-1 md:flex-none px-6 py-3 bg-white/5 border border-white/10 rounded-2xl text-xs font-bold text-white uppercase tracking-widest hover:bg-white/10 transition-all flex items-center justify-center gap-2">
-            <span className="material-symbols-outlined text-lg text-primary">history</span>
-            Histórico
+        <div className="flex items-center gap-3">
+          <button className="px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-xs font-bold text-white uppercase tracking-widest hover:bg-white/10 transition-all flex items-center gap-2">
+            <span className="material-symbols-outlined text-primary">history</span> Histórico
           </button>
           <button 
             onClick={onNewHabit} 
-            className="flex-1 md:flex-none bg-primary text-black font-bold px-8 py-3 rounded-2xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2"
+            className="bg-primary hover:bg-blue-400 text-black font-bold px-8 py-3 rounded-xl flex items-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95"
           >
-            <span className="material-symbols-outlined font-bold">add</span>
-            Novo Hábito
+            <span className="material-symbols-outlined font-bold">add</span> Novo Hábito
           </button>
         </div>
       </header>
 
-      {/* STATS GRID */}
-      <section className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <section className="grid grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { label: 'Hábitos Ativos', value: '8', icon: 'list_alt', sub: 'Total', color: 'text-work' },
-          { label: 'Concluídos Hoje', value: '5 /8', icon: 'check_circle', sub: '62%', color: 'text-health' },
-          { label: 'Melhor Sequência', value: '24 Dias', icon: 'local_fire_department', sub: 'Recorde!', color: 'text-orange-500' },
-          { label: 'Taxa Consistência', value: '88%', icon: 'trending_up', sub: '+5%', color: 'text-personal' },
+          { label: 'Hábitos Ativos', value: '8', icon: 'list_alt', color: 'text-work' },
+          { label: 'Concluídos Hoje', value: '5/8', icon: 'check_circle', color: 'text-health' },
+          { label: 'Sequência Atual', value: '24d', icon: 'local_fire_department', color: 'text-orange-500' },
+          { label: 'Consistência', value: '88%', icon: 'trending_up', color: 'text-personal' },
         ].map((stat, i) => (
-          <div key={i} className="bg-surface-dark/40 border border-white/5 p-6 rounded-[2rem] space-y-4 group hover:border-white/10 transition-all">
-            <div className="flex justify-between items-start">
-              <div className={`w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center ${stat.color} group-hover:scale-110 transition-transform`}>
-                <span className="material-symbols-outlined text-[24px]">{stat.icon}</span>
-              </div>
-              <span className={`text-[10px] font-bold text-primary bg-primary/5 px-2 py-1 rounded-lg uppercase`}>{stat.sub}</span>
+          <div key={i} className="bg-surface-dark/40 p-6 rounded-2xl border border-white/5 flex flex-col gap-4">
+            <div className={`w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center ${stat.color}`}>
+              <span className="material-symbols-outlined text-[20px]">{stat.icon}</span>
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-500">{stat.label}</p>
-              <p className="text-3xl font-bold text-white mt-1">{stat.value}</p>
+              <p className="text-3xl font-bold text-white leading-none">{stat.value}</p>
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">{stat.label}</p>
             </div>
           </div>
         ))}
       </section>
 
-      {/* MAIN CONTENT */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        {/* LEFT COLUMN: WEEKLY TRACKER */}
-        <div className="lg:col-span-2 space-y-6">
-          <div className="bg-surface-dark/40 border border-white/5 rounded-[2.5rem] overflow-hidden">
-            <div className="p-8 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
-              <h3 className="font-bold text-white uppercase tracking-widest text-sm flex items-center gap-3">
-                <span className="w-1.5 h-6 bg-primary rounded-full"></span>
-                Rastreador Semanal
-              </h3>
-              <div className="flex items-center gap-4 text-slate-500">
-                <button className="hover:text-white transition-colors"><span className="material-symbols-outlined text-primary">chevron_left</span></button>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">23 Out - 29 Out</span>
-                <button className="hover:text-white transition-colors"><span className="material-symbols-outlined text-primary">chevron_right</span></button>
-              </div>
-            </div>
-
-            <div className="divide-y divide-white/5">
-              {habits.map((habit, idx) => (
-                <div key={habit.id} className="p-8 flex items-center gap-8 group hover:bg-white/[0.02] transition-colors">
-                  <div className="flex items-center gap-6 flex-1 min-w-0">
-                    <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center transition-all shrink-0">
-                       <span className={`material-symbols-outlined text-2xl ${idx % 3 === 0 ? 'text-health' : idx % 3 === 1 ? 'text-personal' : 'text-work'}`}>
-                         {idx % 3 === 0 ? 'water_drop' : idx % 3 === 1 ? 'auto_stories' : 'exercise'}
-                       </span>
-                    </div>
-                    <div className="min-w-0">
-                       <h4 className="font-bold text-white text-lg truncate group-hover:text-primary transition-colors">{habit.title}</h4>
-                       <div className="flex items-center gap-3 mt-1">
-                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-widest ${idx % 3 === 0 ? 'bg-health/10 text-health' : idx % 3 === 1 ? 'bg-personal/10 text-personal' : 'bg-work/10 text-work'}`}>{habit.category}</span>
-                          <span className="text-[10px] font-bold text-slate-500 flex items-center gap-1">
-                             <span className="material-symbols-outlined text-[14px] text-orange-400">notifications</span>
-                             {idx === 0 ? '09:00' : idx === 1 ? '21:30' : '06:30'}
-                          </span>
-                       </div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2 sm:gap-4">
-                    {['S','T','Q','Q','S','S','D'].map((day, i) => (
-                      <div key={day+i} className="flex flex-col items-center gap-2">
-                        <span className={`text-[9px] font-bold tracking-tighter ${i === 1 ? 'text-primary' : 'text-slate-600'}`}>{day}</span>
-                        <button 
-                          onClick={() => toggleDay(habit.id, i)}
-                          className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all border-2 relative ${
-                            habit.completedDays[i] 
-                            ? 'bg-health border-health text-black shadow-lg shadow-health/20' 
-                            : i === 1 ? 'border-dashed border-slate-700' : 'border-transparent bg-white/5'
-                          }`}
-                        >
-                          {habit.completedDays[i] && <span className="material-symbols-outlined font-bold text-xl">check</span>}
-                          {!habit.completedDays[i] && i === 1 && <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse absolute -top-1"></div>}
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex items-center gap-2 shrink-0 w-16 justify-end">
-                    <span className="material-symbols-outlined text-orange-500 text-xl icon-fill">local_fire_department</span>
-                    <span className="text-sm font-bold text-slate-400">{habit.streak}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+      <div className="bg-surface-dark/40 border border-white/5 rounded-2xl overflow-hidden">
+        <div className="p-8 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
+          <h3 className="text-sm font-bold text-white uppercase tracking-widest flex items-center gap-3">
+            <span className="w-1.5 h-6 bg-primary rounded-full"></span> Rastreador Semanal
+          </h3>
+          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">23 Out - 29 Out</span>
         </div>
 
-        {/* RIGHT COLUMN: PERFORMANCE & REMINDERS */}
-        <div className="space-y-8">
-           {/* PERFORMANCE CHART */}
-           <div className="bg-surface-dark/40 border border-white/5 rounded-[2.5rem] p-8 space-y-8">
-              <div className="space-y-1">
-                <h3 className="font-bold text-white uppercase tracking-widest text-sm">Desempenho Semanal</h3>
-                <p className="text-[10px] font-bold text-slate-500 uppercase">Taxa de conclusão por dia</p>
-              </div>
-
-              <div className="h-48 flex items-end justify-between gap-3 px-2">
-                 {[40, 85, 30, 55, 75, 60, 45].map((h, i) => (
-                    <div key={i} className="flex-1 flex flex-col items-center gap-4">
-                       <div className="w-full relative group">
-                          <div 
-                            className={`w-full rounded-t-xl transition-all duration-700 ${i === 1 ? 'bg-primary shadow-[0_0_20px_rgba(0,180,255,0.4)]' : 'bg-white/5 group-hover:bg-white/10'}`} 
-                            style={{ height: `${h}%` }}
-                          />
-                       </div>
-                       <span className={`text-[10px] font-bold uppercase tracking-tighter ${i === 1 ? 'text-primary' : 'text-slate-600'}`}>
-                          {['S','T','Q','Q','S','S','D'][i]}
-                       </span>
-                    </div>
-                 ))}
-              </div>
-
-              <div className="pt-4 border-t border-white/5 flex justify-between items-center">
-                 <span className="text-xs font-bold text-slate-500">Média diária</span>
-                 <div className="flex items-center gap-2 text-primary">
-                    <span className="material-symbols-outlined text-sm">trending_up</span>
-                    <span className="text-sm font-bold">68%</span>
-                 </div>
-              </div>
-           </div>
-
-           {/* NEXT REMINDERS */}
-           <div className="bg-surface-dark/40 border border-white/5 rounded-[2.5rem] p-8 space-y-6 relative">
-              <div className="flex justify-between items-center">
-                <h3 className="font-bold text-white uppercase tracking-widest text-sm">Próximos Lembretes</h3>
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                   <span className="material-symbols-outlined text-[18px]">notifications_active</span>
+        <div className="divide-y divide-white/5">
+          {habits.map((habit, idx) => (
+            <div key={habit.id} className="p-8 flex items-center gap-8 group hover:bg-white/[0.01] transition-colors">
+              <div className="flex items-center gap-6 flex-1 min-w-0">
+                <div className="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center transition-all shrink-0">
+                   <span className={`material-symbols-outlined text-2xl ${idx % 3 === 0 ? 'text-health' : idx % 3 === 1 ? 'text-personal' : 'text-work'}`}>
+                     {idx % 3 === 0 ? 'water_drop' : idx % 3 === 1 ? 'auto_stories' : 'exercise'}
+                   </span>
+                </div>
+                <div className="min-w-0">
+                   <h4 className="font-bold text-white text-lg truncate group-hover:text-primary transition-colors">{habit.title}</h4>
+                   <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-widest ${idx % 3 === 0 ? 'bg-health/10 text-health' : idx % 3 === 1 ? 'bg-personal/10 text-personal' : 'bg-work/10 text-work'}`}>{habit.category}</span>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                 {weeklyReminders.map((rem, i) => (
-                   <div key={i} className="p-5 bg-white/5 border border-white/5 rounded-3xl flex items-center gap-5 group hover:border-white/10 transition-all cursor-pointer">
-                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${rem.color === 'orange' ? 'bg-orange-400/10 text-orange-400' : 'bg-family/10 text-family'}`}>
-                         <span className="material-symbols-outlined">{rem.icon}</span>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                         <p className="font-bold text-white text-sm truncate">{rem.title}</p>
-                         <p className="text-[10px] font-bold text-slate-500 mt-1 uppercase tracking-widest">
-                           <span className={rem.color === 'orange' ? 'text-orange-400' : 'text-family'}>•</span> {rem.countdown} • {rem.time}
-                         </p>
-                      </div>
-                   </div>
-                 ))}
+              <div className="flex items-center gap-3">
+                {['S','T','Q','Q','S','S','D'].map((day, i) => (
+                  <button 
+                    key={day+i}
+                    onClick={() => toggleDay(habit.id, i)}
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all border-2 ${habit.completedDays[i] ? 'bg-health border-health text-black shadow-lg shadow-health/20' : 'border-white/5 bg-white/5 text-slate-600 hover:border-white/10'}`}
+                  >
+                    {habit.completedDays[i] ? <span className="material-symbols-outlined font-bold text-lg">check</span> : <span className="text-[10px] font-bold uppercase">{day}</span>}
+                  </button>
+                ))}
               </div>
 
-              {/* FLOATING ACTION */}
-              <button className="absolute -bottom-4 right-8 w-14 h-14 bg-primary text-black rounded-full shadow-2xl shadow-primary/40 flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-10">
-                 <span className="material-symbols-outlined text-3xl font-bold">add</span>
-              </button>
-           </div>
+              <div className="flex items-center gap-2 shrink-0 w-16 justify-end">
+                <span className="material-symbols-outlined text-orange-500 text-xl icon-fill">local_fire_department</span>
+                <span className="text-sm font-bold text-slate-400">{habit.streak}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
