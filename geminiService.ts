@@ -35,7 +35,8 @@ FORMATO OBRIGATÓRIO DE RESPOSTA (JSON):
 }`;
 
 export async function getSmartInsight(context: string) {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const apiKey = process.env.API_KEY || '';
+  const ai = new GoogleGenAI({ apiKey });
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
@@ -44,7 +45,7 @@ export async function getSmartInsight(context: string) {
         systemInstruction: SYSTEM_INSTRUCTION
       }
     });
-    return response.text;
+    return response.text || "Foco no que importa hoje.";
   } catch (error) {
     console.error("Gemini Error:", error);
     return "Foco no que importa hoje.";
