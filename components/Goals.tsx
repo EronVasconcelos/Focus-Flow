@@ -39,13 +39,13 @@ const Goals: React.FC<GoalsProps> = ({ goals, onNewGoal }) => {
 
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {stats.map((s, i) => (
-          <div key={i} className="bg-surface-dark/40 border border-white/5 p-6 rounded-2xl group min-h-[160px] flex flex-col justify-between transition-all hover:border-white/10">
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${s.bgColor} ${s.color} group-hover:scale-110 transition-transform`}>
-              <span className="material-symbols-outlined text-[24px]">{s.icon}</span>
+          <div key={i} className="bg-surface-dark/40 border border-white/5 p-8 rounded-3xl group min-h-[180px] flex flex-col items-center justify-center text-center transition-all hover:border-white/10">
+            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${s.bgColor} ${s.color} group-hover:scale-110 transition-transform shadow-lg mb-5`}>
+              <span className="material-symbols-outlined text-[28px]">{s.icon}</span>
             </div>
             <div>
-              <p className="text-3xl font-bold text-white leading-none">{s.value}</p>
-              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-2">{s.label}</p>
+              <p className="text-3xl font-bold text-white leading-none tracking-tighter">{s.value}</p>
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.25em] mt-3">{s.label}</p>
             </div>
           </div>
         ))}

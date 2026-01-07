@@ -45,18 +45,16 @@ const Health: React.FC<HealthProps> = ({ onLog }) => {
           { label: 'Calorias', value: '1.850', unit: 'kcal', icon: 'restaurant', color: 'text-orange-500', bgColor: 'bg-orange-500/10', trend: 'Ok' },
           { label: 'Hidratação', value: '1.2', unit: '/ 2.5L', icon: 'water_drop', color: 'text-blue-400', bgColor: 'bg-blue-400/10', trend: '48%' },
         ].map((stat, i) => (
-          <div key={i} className="bg-surface-dark/40 border border-white/5 p-6 rounded-2xl group min-h-[160px] flex flex-col justify-between transition-all hover:border-white/10">
-            <div className="flex justify-between items-start">
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${stat.bgColor} ${stat.color} group-hover:scale-110 transition-transform`}>
-                <span className="material-symbols-outlined icon-fill">{stat.icon}</span>
-              </div>
-              {stat.trend && <span className="text-[10px] font-bold text-slate-400 bg-white/5 px-2 py-1 rounded-lg">{stat.trend}</span>}
+          <div key={i} className="bg-surface-dark/40 border border-white/5 p-8 rounded-3xl group min-h-[180px] flex flex-col items-center justify-center text-center transition-all hover:border-white/10 relative overflow-hidden">
+            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${stat.bgColor} ${stat.color} group-hover:scale-110 transition-transform shadow-lg mb-5`}>
+              <span className="material-symbols-outlined text-[28px] icon-fill">{stat.icon}</span>
             </div>
+            {stat.trend && <span className="absolute top-4 right-4 text-[9px] font-bold text-slate-400 bg-white/5 px-2 py-1 rounded-lg uppercase tracking-widest">{stat.trend}</span>}
             <div>
-              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{stat.label}</p>
-              <div className="flex items-baseline gap-1 mt-1">
-                 <span className="text-3xl font-bold text-white">{stat.value}</span>
-                 <span className="text-xs font-bold text-slate-500">{stat.unit}</span>
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.25em]">{stat.label}</p>
+              <div className="flex items-baseline justify-center gap-1 mt-2">
+                 <span className="text-3xl font-bold text-white tracking-tighter">{stat.value}</span>
+                 <span className="text-xs font-bold text-slate-500 uppercase">{stat.unit}</span>
               </div>
             </div>
           </div>

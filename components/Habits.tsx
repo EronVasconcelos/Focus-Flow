@@ -47,13 +47,13 @@ const Habits: React.FC<HabitsProps> = ({ habits, setHabits, onNewHabit }) => {
           { label: 'Sequência Atual', value: '24d', icon: 'local_fire_department', color: 'text-orange-500', bgColor: 'bg-orange-500/10' },
           { label: 'Consistência', value: '88%', icon: 'trending_up', color: 'text-personal', bgColor: 'bg-personal/10' },
         ].map((stat, i) => (
-          <div key={i} className="bg-surface-dark/40 p-6 rounded-2xl border border-white/5 group min-h-[160px] flex flex-col justify-between transition-all hover:border-white/10">
-            <div className={`w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center ${stat.bgColor} ${stat.color} group-hover:scale-110 transition-transform`}>
-              <span className="material-symbols-outlined text-[24px]">{stat.icon}</span>
+          <div key={i} className="bg-surface-dark/40 p-8 rounded-3xl border border-white/5 group min-h-[180px] flex flex-col items-center justify-center text-center transition-all hover:border-white/10">
+            <div className={`w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center ${stat.bgColor} ${stat.color} group-hover:scale-110 transition-transform shadow-lg mb-5`}>
+              <span className="material-symbols-outlined text-[28px]">{stat.icon}</span>
             </div>
             <div>
-              <p className="text-3xl font-bold text-white leading-none">{stat.value}</p>
-              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-2">{stat.label}</p>
+              <p className="text-3xl font-bold text-white leading-none tracking-tighter">{stat.value}</p>
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.25em] mt-3">{stat.label}</p>
             </div>
           </div>
         ))}

@@ -1,5 +1,5 @@
 
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, Type } from "@google/genai";
 
 const SYSTEM_INSTRUCTION = `
 Você é o Motor de Lógica e Processamento (Backend) de um Aplicativo de Produtividade Pessoal Avançado. Sua função é receber comandos em linguagem natural e transformá-los em dados estruturados (JSON) para alimentar a interface do usuário.
@@ -13,47 +13,61 @@ ESTRUTURA DE ORGANIZAÇÃO (WORKSPACES): Classifique cada entrada em um destes t
 - Família (Compromissos com esposa, filhos - Miguel, lazer familiar, casa).
 - Trabalho (Reuniões, projetos, prazos, tarefas profissionais).
 
-REGRAS DE RECONHECIMENTO (ESTILO TODOIST):
-Extração de Data/Hora: Se o usuário escrever "Lavar o carro amanhã às 15h", extraia a data do dia seguinte e o horário 15:00. Remova esses termos do título da tarefa.
-Prioridades: P1 (Alta), P2 (Média), P3 (Baixa), P4 (Padrão).
-Hábitos: Se a frase contiver termos de repetição, marque is_habit: true.
+REGRAS DE RECONHECIMENTO:
+Extração de Data/Hora: Extraia datas e horários específicos de comandos como "amanhã às 15h".
+Prioridades: P1 (Urgente), P2 (Alta), P3 (Média), P4 (Baixa).
+Hábitos: Identifique se a entrada é uma tarefa recorrente.
 
-FORMATO OBRIGATÓRIO DE RESPOSTA (JSON):
-{
-  "tipo_acao": "criar_tarefa" | "atualizar_tarefa" | "gerar_relatorio",
-  "detalhes": {
-    "titulo": "string",
-    "data_vencimento": "AAAA-MM-DD",
-    "hora": "HH:MM",
-    "prioridade": "P1" | "P2" | "P3" | "P4",
-    "etiquetas": ["string"],
-    "workspace": "Saúde" | "Família" | "Trabalho",
-    "is_habit": boolean,
-    "frequencia_habito": "diario" | "semanal" | null
-  },
-  "feedback_usuario": "string"
-}`;
+FEEDBACK: No campo 'feedback_usuario', escreva uma frase motivadora e curta em português, resumindo o que você entendeu ou dando uma dica de produtividade baseada no contexto.`;
 
 export async function getSmartInsight(context: string) {
-  // Acesso seguro à API KEY via definição do Vite
   const apiKey = (process.env as any).API_KEY || '';
   
   if (!apiKey) {
-    return "Adicione sua API_KEY no Vercel para insights personalizados.";
+    return { feedback_usuario: "Adicione sua API_KEY para insights personalizados." };
   }
 
   const ai = new GoogleGenAI({ apiKey });
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
-      contents: `Contexto da página atual: ${context}. Gere um insight de produtividade seguindo as instruções do sistema.`,
+      contents: `Contexto da página atual: ${context}. Gere um insight de produtividade.`,
       config: {
-        systemInstruction: SYSTEM_INSTRUCTION
+        systemInstruction: SYSTEM_INSTRUCTION,
+        responseMimeType: "application/json",
+        responseSchema: {
+          type: Type.OBJECT,
+          properties: {
+            tipo_acao: {
+              type: Type.STRING,
+              description: "O tipo de ação detectada: criar_tarefa, atualizar_tarefa ou gerar_relatorio.",
+            },
+            detalhes: {
+              type: Type.OBJECT,
+              properties: {
+                titulo: { type: Type.STRING },
+                data_vencimento: { type: Type.STRING },
+                hora: { type: Type.STRING },
+                prioridade: { type: Type.STRING },
+                workspace: { type: Type.STRING },
+                is_habit: { type: Type.BOOLEAN },
+              },
+              required: ["titulo"]
+            },
+            feedback_usuario: {
+              type: Type.STRING,
+              description: "Mensagem amigável para exibir no banner de insights.",
+            },
+          },
+          required: ["feedback_usuario", "tipo_acao"],
+        }
       }
     });
-    return response.text || "Foco no que importa hoje.";
+
+    const jsonText = response.text.trim();
+    return JSON.parse(jsonText);
   } catch (error) {
     console.error("Gemini Error:", error);
-    return "Foco no que importa hoje.";
+    return { feedback_usuario: "Foco no que importa hoje. Vamos progredir?" };
   }
 }

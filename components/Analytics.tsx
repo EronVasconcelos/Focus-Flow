@@ -37,20 +37,20 @@ const Analytics: React.FC = () => {
 
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-6">
         {summaryStats.map((stat, i) => (
-          <div key={i} className="bg-surface-dark/40 border border-white/5 p-6 rounded-2xl group min-h-[160px] flex flex-col justify-between transition-all hover:border-white/10 relative overflow-hidden">
-            <div className="flex justify-between items-start relative z-10">
-              <div className={`w-12 h-12 ${stat.bg} ${stat.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                <span className="material-symbols-outlined text-[24px] icon-fill">{stat.icon}</span>
-              </div>
+          <div key={i} className="bg-surface-dark/40 border border-white/5 p-8 rounded-3xl group min-h-[180px] flex flex-col items-center justify-center text-center transition-all hover:border-white/10 relative overflow-hidden">
+            <div className="absolute top-4 right-4 flex gap-1">
               {stat.trend !== '0%' && (
-                <span className={`text-[10px] font-bold px-2 py-1 rounded-lg uppercase tracking-widest ${stat.up ? 'bg-emerald-500/10 text-emerald-500' : 'bg-red-500/10 text-red-500'}`}>
+                <span className={`text-[9px] font-bold px-2 py-1 rounded-lg uppercase tracking-widest ${stat.up ? 'bg-emerald-500/10 text-emerald-500' : 'bg-red-500/10 text-red-500'}`}>
                   {stat.trend}
                 </span>
               )}
             </div>
-            <div className="relative z-10">
-              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{stat.label}</p>
-              <p className="text-3xl font-bold text-white mt-1">{stat.value}</p>
+            <div className={`w-14 h-14 ${stat.bg} ${stat.color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg mb-5`}>
+              <span className="material-symbols-outlined text-[28px] icon-fill">{stat.icon}</span>
+            </div>
+            <div>
+              <p className="text-3xl font-bold text-white leading-none tracking-tighter">{stat.value}</p>
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.25em] mt-3">{stat.label}</p>
             </div>
           </div>
         ))}
