@@ -37,15 +37,17 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks, habits, onNewTask }) => {
 
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-6">
         {statConfig.map((stat) => (
-          <div key={stat.label} className="bg-surface-dark/40 p-6 rounded-2xl border border-white/5 hover:border-white/10 transition-all group">
-            <div className="flex justify-between items-start mb-6">
+          <div key={stat.label} className="bg-surface-dark/40 p-6 rounded-2xl border border-white/5 hover:border-white/10 transition-all group min-h-[160px] flex flex-col justify-between">
+            <div className="flex justify-between items-start">
               <div className={`w-12 h-12 rounded-xl ${stat.bgColor} ${stat.color} flex items-center justify-center group-hover:scale-110 transition-transform`}>
                 <span className="material-symbols-outlined">{stat.icon}</span>
               </div>
               <span className="text-[10px] font-bold px-2 py-1 rounded bg-white/5 text-slate-400 uppercase tracking-widest">{stat.change}</span>
             </div>
-            <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">{stat.label}</p>
-            <p className="text-3xl font-bold text-white mt-1">{stat.value}</p>
+            <div>
+              <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">{stat.label}</p>
+              <p className="text-3xl font-bold text-white mt-1">{stat.value}</p>
+            </div>
           </div>
         ))}
       </section>

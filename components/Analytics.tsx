@@ -24,8 +24,8 @@ const Analytics: React.FC = () => {
           <p className="text-sm font-normal text-slate-400">Visualize seu desempenho e <span className="text-primary font-bold">tendências de produtividade</span>.</p>
         </div>
         <div className="flex items-center gap-3">
-          <button className="px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-xs font-bold text-white uppercase tracking-widest hover:bg-white/10 transition-all flex items-center gap-2">
-            <span className="material-symbols-outlined text-primary">calendar_today</span>
+          <button className="bg-primary hover:bg-blue-400 text-black font-bold px-6 py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95 text-xs uppercase tracking-widest">
+            <span className="material-symbols-outlined text-sm font-bold">calendar_today</span>
             Outubro 2023
           </button>
           <button className="bg-primary hover:bg-blue-400 text-black font-bold px-8 py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95 text-xs uppercase tracking-widest">
@@ -37,13 +37,13 @@ const Analytics: React.FC = () => {
 
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-6">
         {summaryStats.map((stat, i) => (
-          <div key={i} className="bg-surface-dark/40 border border-white/5 p-8 rounded-2xl space-y-6 group hover:border-white/10 transition-all relative overflow-hidden">
+          <div key={i} className="bg-surface-dark/40 border border-white/5 p-6 rounded-2xl group min-h-[160px] flex flex-col justify-between transition-all hover:border-white/10 relative overflow-hidden">
             <div className="flex justify-between items-start relative z-10">
-              <div className={`w-14 h-14 ${stat.bg} ${stat.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                <span className="material-symbols-outlined text-2xl icon-fill">{stat.icon}</span>
+              <div className={`w-12 h-12 ${stat.bg} ${stat.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                <span className="material-symbols-outlined text-[24px] icon-fill">{stat.icon}</span>
               </div>
               {stat.trend !== '0%' && (
-                <span className={`text-[10px] font-bold px-2.5 py-1 rounded-lg uppercase tracking-widest ${stat.up ? 'bg-emerald-500/10 text-emerald-500' : 'bg-red-500/10 text-red-500'}`}>
+                <span className={`text-[10px] font-bold px-2 py-1 rounded-lg uppercase tracking-widest ${stat.up ? 'bg-emerald-500/10 text-emerald-500' : 'bg-red-500/10 text-red-500'}`}>
                   {stat.trend}
                 </span>
               )}

@@ -12,9 +12,9 @@ const Goals: React.FC<GoalsProps> = ({ goals, onNewGoal }) => {
   const [activeTab, setActiveTab] = useState<'longo-prazo' | 'diarias'>('longo-prazo');
 
   const stats = [
-    { label: 'Total de Metas', value: '8', icon: 'flag', color: 'text-primary' },
-    { label: 'Em Progresso', value: '5', icon: 'pending_actions', color: 'text-orange-400' },
-    { label: 'Conquistas', value: '3', icon: 'emoji_events', color: 'text-health' },
+    { label: 'Total de Metas', value: '8', icon: 'flag', color: 'text-primary', bgColor: 'bg-primary/10' },
+    { label: 'Em Progresso', value: '5', icon: 'pending_actions', color: 'text-orange-400', bgColor: 'bg-orange-400/10' },
+    { label: 'Conquistas', value: '3', icon: 'emoji_events', color: 'text-health', bgColor: 'bg-health/10' },
   ];
 
   return (
@@ -25,27 +25,27 @@ const Goals: React.FC<GoalsProps> = ({ goals, onNewGoal }) => {
           <p className="text-sm font-normal text-slate-400">Transforme grandes sonhos em <span className="text-orange-400 font-bold">conquistas reais</span>.</p>
         </div>
         <div className="flex items-center gap-3">
-          <button className="px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-xs font-bold text-white uppercase tracking-widest hover:bg-white/10 transition-all flex items-center gap-2">
-            <span className="material-symbols-outlined text-primary">tune</span> Filtrar
+          <button className="bg-primary hover:bg-blue-400 text-black font-bold px-6 py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95 text-xs uppercase tracking-widest">
+            <span className="material-symbols-outlined text-sm font-bold">tune</span> Filtrar
           </button>
           <button 
             onClick={onNewGoal} 
-            className="bg-primary hover:bg-blue-400 text-black font-bold px-8 py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95"
+            className="bg-primary hover:bg-blue-400 text-black font-bold px-8 py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95 text-xs uppercase tracking-widest"
           >
-            <span className="material-symbols-outlined font-bold">add</span> Nova Meta
+            <span className="material-symbols-outlined font-bold text-sm">add</span> Nova Meta
           </button>
         </div>
       </header>
 
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {stats.map((s, i) => (
-          <div key={i} className="bg-surface-dark/40 border border-white/5 p-6 rounded-2xl flex items-center gap-5 hover:border-white/10 transition-all group">
-            <div className={`w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center ${s.color} group-hover:scale-110 transition-transform`}>
-              <span className="material-symbols-outlined text-2xl">{s.icon}</span>
+          <div key={i} className="bg-surface-dark/40 border border-white/5 p-6 rounded-2xl group min-h-[160px] flex flex-col justify-between transition-all hover:border-white/10">
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${s.bgColor} ${s.color} group-hover:scale-110 transition-transform`}>
+              <span className="material-symbols-outlined text-[24px]">{s.icon}</span>
             </div>
             <div>
-              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{s.label}</p>
-              <p className="text-3xl font-bold text-white">{s.value}</p>
+              <p className="text-3xl font-bold text-white leading-none">{s.value}</p>
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-2">{s.label}</p>
             </div>
           </div>
         ))}

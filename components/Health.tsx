@@ -19,42 +19,42 @@ const Health: React.FC<HealthProps> = ({ onLog }) => {
   ];
 
   return (
-    <div className="flex-1 p-6 lg:p-10 max-w-[1600px] mx-auto w-full space-y-10 overflow-y-auto pb-24">
+    <div className="flex-1 p-6 lg:p-10 max-w-[1400px] mx-auto w-full space-y-10 overflow-y-auto pb-24">
       <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div className="space-y-1">
           <h1 className="text-3xl font-bold text-white tracking-tight">Painel de Saúde</h1>
           <p className="text-sm font-normal text-slate-400">Terça-feira, 06 de Janeiro • Monitorando seu <span className="text-health font-bold">bem-estar</span>.</p>
         </div>
         <div className="flex items-center gap-3 w-full md:w-auto">
-          <button className="flex-1 md:flex-none px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-xs font-bold text-white uppercase tracking-widest hover:bg-white/10 transition-all flex items-center justify-center gap-2">
-            <span className="material-symbols-outlined text-primary">flag</span> Definir Metas
+          <button className="flex-1 md:flex-none bg-primary hover:bg-blue-400 text-black font-bold px-6 py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95 text-xs uppercase tracking-widest">
+            <span className="material-symbols-outlined text-sm font-bold">flag</span> Definir Metas
           </button>
           <button 
             onClick={onLog}
-            className="flex-1 md:flex-none bg-health text-black font-bold px-8 py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-health/20 hover:scale-[1.02] active:scale-95 transition-all"
+            className="flex-1 md:flex-none bg-primary hover:bg-blue-400 text-black font-bold px-8 py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95 text-xs uppercase tracking-widest"
           >
-            <span className="material-symbols-outlined font-bold">add</span> Novo Registro
+            <span className="material-symbols-outlined font-bold text-sm">add</span> Novo Registro
           </button>
         </div>
       </header>
 
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { label: 'Peso Atual', value: '75.0', unit: 'kg', icon: 'scale', color: 'text-health', trend: '-0.5%' },
-          { label: 'Passos Hoje', value: '8.432', unit: 'passos', icon: 'directions_walk', color: 'text-primary', trend: '+12%' },
-          { label: 'Calorias', value: '1.850', unit: 'kcal', icon: 'restaurant', color: 'text-orange-500', trend: 'Ok' },
-          { label: 'Hidratação', value: '1.2', unit: '/ 2.5L', icon: 'water_drop', color: 'text-blue-400', progress: 48 },
+          { label: 'Peso Atual', value: '75.0', unit: 'kg', icon: 'scale', color: 'text-health', bgColor: 'bg-health/10', trend: '-0.5%' },
+          { label: 'Passos Hoje', value: '8.432', unit: 'passos', icon: 'directions_walk', color: 'text-primary', bgColor: 'bg-primary/10', trend: '+12%' },
+          { label: 'Calorias', value: '1.850', unit: 'kcal', icon: 'restaurant', color: 'text-orange-500', bgColor: 'bg-orange-500/10', trend: 'Ok' },
+          { label: 'Hidratação', value: '1.2', unit: '/ 2.5L', icon: 'water_drop', color: 'text-blue-400', bgColor: 'bg-blue-400/10', trend: '48%' },
         ].map((stat, i) => (
-          <div key={i} className="bg-surface-dark/40 border border-white/5 p-6 rounded-2xl space-y-4 hover:border-white/10 transition-all group">
+          <div key={i} className="bg-surface-dark/40 border border-white/5 p-6 rounded-2xl group min-h-[160px] flex flex-col justify-between transition-all hover:border-white/10">
             <div className="flex justify-between items-start">
-              <div className={`w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center ${stat.color} group-hover:scale-110 transition-transform`}>
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${stat.bgColor} ${stat.color} group-hover:scale-110 transition-transform`}>
                 <span className="material-symbols-outlined icon-fill">{stat.icon}</span>
               </div>
               {stat.trend && <span className="text-[10px] font-bold text-slate-400 bg-white/5 px-2 py-1 rounded-lg">{stat.trend}</span>}
             </div>
             <div>
               <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{stat.label}</p>
-              <div className="flex items-baseline gap-1">
+              <div className="flex items-baseline gap-1 mt-1">
                  <span className="text-3xl font-bold text-white">{stat.value}</span>
                  <span className="text-xs font-bold text-slate-500">{stat.unit}</span>
               </div>

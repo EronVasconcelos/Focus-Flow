@@ -21,39 +21,39 @@ const Habits: React.FC<HabitsProps> = ({ habits, setHabits, onNewHabit }) => {
   };
 
   return (
-    <div className="flex-1 p-6 lg:p-10 max-w-[1600px] mx-auto w-full space-y-10 overflow-y-auto pb-32">
+    <div className="flex-1 p-6 lg:p-10 max-w-[1400px] mx-auto w-full space-y-10 overflow-y-auto pb-32">
       <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div className="space-y-1">
           <h1 className="text-3xl font-bold text-white tracking-tight">Gerenciamento de Hábitos</h1>
           <p className="text-sm font-normal text-slate-400">Construa consistência e acompanhe seu <span className="text-primary font-bold">progresso diário</span>.</p>
         </div>
         <div className="flex items-center gap-3">
-          <button className="px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-xs font-bold text-white uppercase tracking-widest hover:bg-white/10 transition-all flex items-center gap-2">
-            <span className="material-symbols-outlined text-primary">history</span> Histórico
+          <button className="bg-primary hover:bg-blue-400 text-black font-bold px-6 py-3 rounded-xl flex items-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95 text-xs uppercase tracking-widest">
+            <span className="material-symbols-outlined text-sm font-bold">history</span> Histórico
           </button>
           <button 
             onClick={onNewHabit} 
-            className="bg-primary hover:bg-blue-400 text-black font-bold px-8 py-3 rounded-xl flex items-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95"
+            className="bg-primary hover:bg-blue-400 text-black font-bold px-8 py-3 rounded-xl flex items-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95 text-xs uppercase tracking-widest"
           >
-            <span className="material-symbols-outlined font-bold">add</span> Novo Hábito
+            <span className="material-symbols-outlined font-bold text-sm">add</span> Novo Hábito
           </button>
         </div>
       </header>
 
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { label: 'Hábitos Ativos', value: '8', icon: 'list_alt', color: 'text-work' },
-          { label: 'Concluídos Hoje', value: '5/8', icon: 'check_circle', color: 'text-health' },
-          { label: 'Sequência Atual', value: '24d', icon: 'local_fire_department', color: 'text-orange-500' },
-          { label: 'Consistência', value: '88%', icon: 'trending_up', color: 'text-personal' },
+          { label: 'Hábitos Ativos', value: '8', icon: 'list_alt', color: 'text-work', bgColor: 'bg-work/10' },
+          { label: 'Concluídos Hoje', value: '5/8', icon: 'check_circle', color: 'text-health', bgColor: 'bg-health/10' },
+          { label: 'Sequência Atual', value: '24d', icon: 'local_fire_department', color: 'text-orange-500', bgColor: 'bg-orange-500/10' },
+          { label: 'Consistência', value: '88%', icon: 'trending_up', color: 'text-personal', bgColor: 'bg-personal/10' },
         ].map((stat, i) => (
-          <div key={i} className="bg-surface-dark/40 p-6 rounded-2xl border border-white/5 flex flex-col gap-4">
-            <div className={`w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center ${stat.color}`}>
-              <span className="material-symbols-outlined text-[20px]">{stat.icon}</span>
+          <div key={i} className="bg-surface-dark/40 p-6 rounded-2xl border border-white/5 group min-h-[160px] flex flex-col justify-between transition-all hover:border-white/10">
+            <div className={`w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center ${stat.bgColor} ${stat.color} group-hover:scale-110 transition-transform`}>
+              <span className="material-symbols-outlined text-[24px]">{stat.icon}</span>
             </div>
             <div>
               <p className="text-3xl font-bold text-white leading-none">{stat.value}</p>
-              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">{stat.label}</p>
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-2">{stat.label}</p>
             </div>
           </div>
         ))}

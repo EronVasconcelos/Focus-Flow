@@ -48,18 +48,18 @@ const Tasks: React.FC<TasksProps> = ({ tasks, onToggle, onNewTask }) => {
 
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { label: 'Pendentes', value: pendingTasks.length, icon: 'calendar_today', color: 'text-work' },
-          { label: 'Em Andamento', value: '12', icon: 'more_horiz', color: 'text-orange-400' },
-          { label: 'Concluídas', value: completedTasks.length, icon: 'check_circle', color: 'text-health' },
-          { label: 'Tempo Foco', value: '3h 45m', icon: 'timer', color: 'text-personal' },
+          { label: 'Pendentes', value: pendingTasks.length.toString(), icon: 'calendar_today', color: 'text-work', bgColor: 'bg-work/10' },
+          { label: 'Em Andamento', value: '12', icon: 'more_horiz', color: 'text-orange-400', bgColor: 'bg-orange-400/10' },
+          { label: 'Concluídas', value: completedTasks.length.toString(), icon: 'check_circle', color: 'text-health', bgColor: 'bg-health/10' },
+          { label: 'Tempo Foco', value: '3h 45m', icon: 'timer', color: 'text-personal', bgColor: 'bg-personal/10' },
         ].map((stat, i) => (
-          <div key={i} className="bg-surface-dark/40 p-6 rounded-2xl border border-white/5 flex flex-col gap-4">
-            <div className={`w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center ${stat.color}`}>
-              <span className="material-symbols-outlined text-[20px]">{stat.icon}</span>
+          <div key={i} className="bg-surface-dark/40 p-6 rounded-2xl border border-white/5 group min-h-[160px] flex flex-col justify-between transition-all hover:border-white/10">
+            <div className={`w-12 h-12 rounded-xl ${stat.bgColor} ${stat.color} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+              <span className="material-symbols-outlined text-[24px]">{stat.icon}</span>
             </div>
             <div>
               <p className="text-3xl font-bold text-white leading-none">{stat.value}</p>
-              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">{stat.label}</p>
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-2">{stat.label}</p>
             </div>
           </div>
         ))}
