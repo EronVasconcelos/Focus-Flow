@@ -35,7 +35,13 @@ FORMATO OBRIGATÓRIO DE RESPOSTA (JSON):
 }`;
 
 export async function getSmartInsight(context: string) {
-  const apiKey = process.env.API_KEY || '';
+  // Acesso seguro à API KEY via definição do Vite
+  const apiKey = (process.env as any).API_KEY || '';
+  
+  if (!apiKey) {
+    return "Adicione sua API_KEY no Vercel para insights personalizados.";
+  }
+
   const ai = new GoogleGenAI({ apiKey });
   try {
     const response = await ai.models.generateContent({
